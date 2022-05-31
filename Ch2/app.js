@@ -32,7 +32,7 @@ const app = Vue.createApp({
 
         toggleFav(book) {
             book.isFav = !book.isFav;
-            console.log("Method Called, isFav for " + book.title + " now: " + book.isFav);
+            //console.log("Method Called, isFav for " + book.title + " now: " + book.isFav);
         },
 
         handleEvent(e, num) {
@@ -47,6 +47,12 @@ const app = Vue.createApp({
             this.x = e.offsetX;
             this.y = e.offsetY;
         }   
+    },
+
+    computed: {
+        filteredBooks() {
+            return this.books.filter((book) => book.isFav); 
+        }
     }
 
 })
