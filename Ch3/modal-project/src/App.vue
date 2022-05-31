@@ -2,11 +2,10 @@
   <h1>{{ title }}</h1>
   <p> Welcome... </p>
     <div v-if="showModal">
-      <Modal theme="sale" @close="toggleModal">
+      <Modal theme="" @close="toggleModal">
 
         <template v-slot:links>
           <a href="#">Sign Up Now!</a>
-          <br>
           <a href="#">More Info</a>
         </template>
 

@@ -25,7 +25,7 @@ export default {
 
 </script>
 
-<style scoped>
+<style>
 
     .modal {
         width: 400px;
@@ -43,7 +43,7 @@ export default {
         height: 100%;
     }
 
-    h1 {
+    .modal h1 {
         color: #03cfb4;
         border: none;
         padding: 0;
@@ -58,4 +58,25 @@ export default {
         color: white;
     }
 
+    .modal .actions {
+        text-align: center;
+        margin: 30px 0 10px 0;
+    }
+
+    .modal .actions a{
+        color: #333;
+        padding: 8px;
+        border: 1px solid #eee;
+        border-radius: 4px;
+        text-decoration: none;
+        margin: 10px;
+    }
+
+    .modal.sale .actions {
+        color: white;
+    }
+
+    .modal.sale .actions a {
+        color: white;
+    }
 </style>
