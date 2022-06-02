@@ -25,6 +25,10 @@
           <label> Mario </label>
       </div>
 
+      <label>Skills:</label>
+      <input type="text>" v-model="tempSkill" @keyup.enter="addSkill"/>
+      <div v-for="skill in skills " :key="skill" class="pill">{{ skill }}</div>
+
       <div class="terms">
           <input type="checkbox" v-model="terms" required>
           <label> Accept Terms and Conditions </label>
@@ -42,6 +46,7 @@
 
 <script>
 export default {
+    
     data() {
         return {
             email: '',
@@ -49,8 +54,28 @@ export default {
             role: 'developer',
             terms: false,
             names: [],
+            tempSkill: '',
+            skills: [],
+
         }
+    },
+
+    methods: {
+
+        addSkill(e) {
+            console.log(e.key)
+            if (e.key === 'Enter' && this.tempSkill) {
+
+                if(!this.skills.includes(this.tempSkill)) {
+                    this.skills.push(this.tempSkill);
+                }
+
+                this.tempSkill = '';
+            }
+        }
+
     }
+
 }
 </script>
 
@@ -63,6 +88,19 @@ form {
     text-align: left;
     padding: 40px;
     border-radius: 10px; 
+}
+
+.pill {
+    display: inline-block;
+    margin: 20px 10px 0 0;
+    padding: 6px 12px;
+    background: #eee;
+    border-radius: 20px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    color: #777;
+    cursor: pointer;
 }
 
 label {
