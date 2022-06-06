@@ -2,7 +2,7 @@
   <div class="home">
     <div v-if="projects.length">
       <div v-for="project in projects" :key="project.id">
-          <SingleProject/>
+          <SingleProject :project="project"/>
       </div>
     </div>
   </div>
