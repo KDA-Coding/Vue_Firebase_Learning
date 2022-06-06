@@ -1,9 +1,9 @@
 <template>
     <div class="project">
-        <div class="actions" @click="toggleDetails">
+        <div @click="toggleDetails" class="actions">
             <h3>{{ project.title }}</h3>
         </div>
-        <div class="details" v-if="showDetails">
+        <div v-if="showDetails" class="details">
             <p>{{ project.details }}</p>
         </div>
     </div>
@@ -18,7 +18,7 @@ export default {
 
     data() {
         return {
-            showDetails: true
+            showDetails: false
         }
     },
 
