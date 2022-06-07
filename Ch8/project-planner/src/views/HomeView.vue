@@ -1,7 +1,8 @@
 <template>
   <div class="home">
-    <div v-if="projects.length">
-      <div v-for="project in projects" :key="project.id">
+    <FilterNav @filterChange="current = $event" :current="current" />
+    <div v-if="filteredProjects.length">
+      <div v-for="project in filteredProjects" :key="project.id">
           <SingleProject :project="project" @delete="handleDelete" @complete="handleComplete"/>
       </div>
     </div>
@@ -9,19 +10,23 @@
 </template>
 
 <script>
+// Challenge
+// - When the filter changes (current), only show those projects 
+// - E.G. if we click 'completed' only show completed projects
+// - Hint: Use a Computed property called filteredProjects to do this
 
 import SingleProject from '@/components/SingleProject.vue'
+import FilterNav from '@/components/FilterNav.vue'
 
 export default {
   
   name: 'HomeView',
-  components: { SingleProject },
+  components: { SingleProject, FilterNav },
   
   data() {
     return {
-      projects: [
-
-      ]
+      projects: [],
+      current: 'all'
     }
   },
   
@@ -30,6 +35,23 @@ export default {
       .then(res => res.json())
         .then(data => this.projects = data)
         .catch(err => console.log(err.message))
+  },
+
+  computed: {
+
+    filteredProjects() {
+      
+      if (this.current === 'completed') {
+        return this.projects.filter((project) => project.complete);
+      }
+
+      if (this.current === 'ongoing') {
+        return this.projects.filter((project) => !project.complete);
+      }
+
+        return this.projects;
+    }
+
   },
 
   methods: {
