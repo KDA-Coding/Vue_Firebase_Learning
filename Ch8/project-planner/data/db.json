@@ -11,6 +11,12 @@
       "title": "Make Marketing Email",
       "details": "Lorem ipsum",
       "complete": false
+    },
+    {
+      "title": "This is an Edit",
+      "details": "Edit text here\n",
+      "complete": false,
+      "id": 3
     }
   ]
 }
