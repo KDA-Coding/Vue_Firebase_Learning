@@ -1,6 +1,5 @@
 <template>
-  <h1>Edit Project</h1>
-  <form>
+  <form @submit.prevent="handleSubmit">
         <label>Title:</label>
         <input type="text" v-model="title" required>
         <label>Details:</label>
@@ -10,6 +9,11 @@
 </template>
 
 <script>
+// Challenge:
+// - Add sumbitHandler to this form
+// - Make a fetch (PATCH) request to the uri to update the project
+// - Redirect to Home Page when done
+
 export default {
 
   props: ['id'],
@@ -28,7 +32,30 @@ export default {
       .then(data => {
         this.title = data.title
         this.details = data.details
-      })}
+      })},
+
+  methods: {
+
+    handleSubmit() {
+      let project = {
+          title: this.title,
+          details: this.details
+      }
+      
+      fetch(this.uri,
+      {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(project)
+      })
+          .then( () => {
+              this.$router.push('/')
+          })
+          .catch((err) => console.log(err)) 
+
+        }
+  }
+
 }
 </script>
 
