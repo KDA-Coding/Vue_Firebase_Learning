@@ -2,20 +2,18 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBKB4L3qyD-QHCovEvntQS3HRuOJBVSkno",
-  authDomain: "udemy-vue-projects.firebaseapp.com",
-  databaseURL: "https://udemy-vue-projects.firebaseio.com",
-  projectId: "udemy-vue-projects",
-  storageBucket: "udemy-vue-projects.appspot.com",
-  messagingSenderId: "25092947019",
-  appId: "1:25092947019:web:fdd61cabc8d29add63e1ce"
-};
+    apiKey: "AIzaSyDwAnGQ6kmztV9iQ8vKIgreZ5yYSlDpisI",
+    authDomain: "netninja-vue-firebase-si-35722.firebaseapp.com",
+    projectId: "netninja-vue-firebase-si-35722",
+    storageBucket: "netninja-vue-firebase-si-35722.appspot.com",
+    messagingSenderId: "398999481293",
+    appId: "1:398999481293:web:9363700de5bc993622f284"
+  };
 
-// init firebase
+//Initialize Firebase
 firebase.initializeApp(firebaseConfig)
 
-// init firestore service
+// Initialize Firestore Service
 const projectFirestore = firebase.firestore()
 
-// export firestore
 export { projectFirestore }
