@@ -1,35 +1,29 @@
-import { projectFirestore } from '@/firebase/config'
 import { ref } from 'vue'
+import { projectFirestore } from '../firebase/config'
 
 const getPost = (id) => {
 
-    const post = ref(null)
-        const error = ref(null)
+  const post = ref(null)
+  const error = ref(null)
 
-        const load = async () => {
-          
-          try {
+  const load = async () => {
+    try {
+      let res = await projectFirestore.collection('posts').doc(id).get()
+      // console.log(res)
+      // console.log(res.data)
 
-            let res = await projectFirestore.collection('posts').doc(id).get()
-            //console.log(res)
+      if (!res.exists) {
+        throw Error('That post does not exist')
+      }
+      post.value = { ...res.data(), id: res.id }
+      // console.log(post.value)
+    }
+    catch(err) {
+      error.value = err.message
+    }
+  }
 
-            if(!res.exists) {
-              throw Error("That post does not exist!")
-            }
-
-            post.value = { ...res.data(), id: res.id }
-            //console.log(post.value)
-
-
-          }
-          catch(err) {
-            error.value = err.message
-            console.log(error.value) 
-          }
-        }
-    
-    return { post, error, load }
-
+  return { post, error, load } 
 }
 
 export default getPost
