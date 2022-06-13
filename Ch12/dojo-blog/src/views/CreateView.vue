@@ -22,6 +22,7 @@
 <script>
 
 import { ref } from 'vue'
+import { router } from 'vue-router'
 import { projectFirestore } from '@/firebase/config';
 
 export default {
