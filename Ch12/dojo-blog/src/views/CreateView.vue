@@ -22,12 +22,15 @@
 <script>
 
 import { ref } from 'vue'
-import { router } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { projectFirestore } from '@/firebase/config';
 
 export default {
 
     setup() {
+
+        const router = useRouter()
+        const route = useRoute()
 
         const title = ref('');
         const body = ref('');
@@ -55,11 +58,16 @@ export default {
             const res = await projectFirestore.collection('posts').add(post)
             //console.log(res)
 
-            router.push({name: 'home'})
-
+            const backToHome = () => {
+                setTimeout(() => {
+                    router.push({name: 'home'})
+                }, 3000)
+            }
         }
 
-        return { title, body, tag, tags, handleKeydown, handleSubmit }
+        
+
+        return { title, body, tag, tags, handleKeydown, handleSubmit}
 
     }
 

@@ -7,6 +7,7 @@
   <div v-else >
       <LoadingSpinner />
   </div>
+  <button @click="returnHome"> Return to Home </button>
 </template>
 
 <script>
@@ -16,9 +17,17 @@ import LoadingSpinner from '@/components/LoadingSpinner.vue'
 export default {
     props: ["id"],
     components: { LoadingSpinner },
+    computed:{
+        returnHome() {
+            this.$router.push({name:'home'})
+        }
+    },
     setup(props) {
         const { post, error, load } = getPost(props.id);
         load();
+
+       
+
         return { post, error };
     }
 }
