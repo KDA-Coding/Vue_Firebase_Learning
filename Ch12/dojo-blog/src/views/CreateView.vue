@@ -14,7 +14,7 @@
             <div v-for="tag in tags" :key="tag" class="pill">
                 #{{ tag }}
             </div>
-          <button @click="backToHome">Add Post</button>
+          <button>Add Post</button>
       </form>
   </div>
 </template>
@@ -57,15 +57,11 @@ export default {
 
             const res = await projectFirestore.collection('posts').add(post)
             //console.log(res)
+
+            router.push({name: 'home'})
         }
 
-        const backToHome = () => {
-                setTimeout(() => {
-                    router.push({name: 'home'})
-                }, 3000)
-            }
-
-        return { title, body, tag, tags, handleKeydown, handleSubmit, backToHome}
+        return { title, body, tag, tags, handleKeydown, handleSubmit}
 
     }
 
