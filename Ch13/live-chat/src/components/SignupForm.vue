@@ -1,8 +1,9 @@
 <template>
-  <form @submit.prevent="handleSubmit">
+  <form @submit.prevent="handleSubmit()">
     <input type="text" required placeholder="Display Name" v-model="displayName"/>
     <input type="email" required placeholder="Email" v-model="email"/>
     <input type="password" required placeholder="Password" v-model="password"/>
+    <div class="error"> {{ error }} </div>
     <button>Sign Up</button>
   </form>
 </template>
@@ -22,11 +23,11 @@ export default {
         const email = ref('')
         const password = ref('')
 
-        const handleSubmit = () => {
-            console.log(displayName.value, email.value, password.value)
+        const handleSubmit = async () => {
+          await signup(email.value, password.value, displayName.value)
         }
 
-        return { displayName, email, password, handleSubmit }
+        return { displayName, email, password, handleSubmit, error }
     }
 
 }
