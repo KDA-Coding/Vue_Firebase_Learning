@@ -8,7 +8,7 @@
     </div>
     <div v-else>
       <h2>Sign Up</h2>
-      <SignupFormVue />
+      <SignupFormVue @signup="returnToLogin"/>
       <p> Already have an Account? <span @click="showLogin = true">Login</span> </p>
     </div>
     
@@ -32,11 +32,20 @@ export default {
     const router = useRouter()
 
 
-    const enterChat = () => {
-      router.push({name: 'chatroom'})
+    const returnToLogin = () => {
+      
+      alert('Account Created')
+
+      showLogin.value = true
     }
 
-    return { showLogin, enterChat }
+    const enterChat = () => {
+      
+      router.push({name: 'chatroom'})
+
+    }
+
+    return { showLogin, returnToLogin, enterChat }
   }
 
 }
