@@ -12,20 +12,27 @@
 
 import NavBarVue from '@/components/NavBar.vue'
 import getUser from '@/composables/getUser'
-import { ref } from 'vue'
+import { watch } from 'vue'
+import { useRouter } from 'vue-router'
 
 export default {
 
   components: { NavBarVue },
 
   setup() {
-    const { user } = ref(getUser())
+    const { user } = getUser()
+    const router = useRouter()
 
-    watch(user, )
-
-    return { user }
+    watch(user, () => {
+      if(!user.value) {
+        console.log(router)
+        console.log(user)
+          router.push("/")
+        console.log(router)
+        console.log(user)
+      }
+    })
   }
-
 }
 </script>
 
