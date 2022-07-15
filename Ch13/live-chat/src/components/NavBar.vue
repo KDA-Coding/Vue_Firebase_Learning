@@ -28,7 +28,6 @@ export default {
             }
         }
 
-
         return { handleClick, user }
 
     }

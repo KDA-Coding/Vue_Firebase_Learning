@@ -24,11 +24,7 @@ export default {
 
     watch(user, () => {
       if(!user.value) {
-        console.log(router)
-        console.log(user)
           router.push("/")
-        console.log(router)
-        console.log(user)
       }
     })
   }
